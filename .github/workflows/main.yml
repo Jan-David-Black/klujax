@@ -47,6 +47,8 @@ jobs:
         PYTHON_VERSION: ["3.8", "3.9", "3.10", "3.11"]
         ARCH: ["osx-arm64", "osx-64"]
     steps:
+      - name: Get Machine Type
+        run: machine
       - name: Checkout
         uses: actions/checkout@v3
       - name: Setup mamba environment
