@@ -19,12 +19,12 @@ pybind11_include = {
 }
 extra_compile_args = {
     "nt": [],
-    "darwin": ["-std=c++11"],
+    "darwin": ["-std=c++14", "-hello"],
     "posix": [],
 }
 extra_link_args = {
     "nt": [],
-    "darwin": [],
+    "darwin": ["-static-libgcc", "-static-libstdc++"],
     "posix": ["-static-libgcc", "-static-libstdc++"],
 }
 
@@ -65,7 +65,7 @@ klujax_cpp = Extension(
     library_dirs=library_dirs,
     extra_compile_args=extra_compile_args[os.name],
     extra_link_args=extra_link_args[os.name],
-    language="c++11",
+    language="c++",
 )
 
 setup(
