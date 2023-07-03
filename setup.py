@@ -65,7 +65,7 @@ klujax_cpp = Extension(
     library_dirs=library_dirs,
     extra_compile_args=extra_compile_args[os.name],
     extra_link_args=extra_link_args[os.name],
-    language="c++",
+    language="c++11",
 )
 
 setup(
