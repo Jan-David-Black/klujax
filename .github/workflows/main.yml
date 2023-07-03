@@ -57,6 +57,9 @@ jobs:
             bash
             powershell 
           post-cleanup: 'all'
+        name: init conda
+        run: |
+          conda init bash
       - name: create env
         run: |
           CONDA_SUBDIR=${{ matrix.ARCH }} conda create -n build-env \
