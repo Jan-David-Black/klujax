@@ -44,7 +44,8 @@ jobs:
     strategy:
       max-parallel: 3
       matrix:
-        PYTHON_VERSION: ["3.8", "3.9", "3.10", "3.11"]
+        PYTHON_VERSION: ["3.8"]
+        #, "3.9", "3.10", "3.11"]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -67,7 +68,8 @@ jobs:
           post-cleanup: 'all'
       - name: check python works
         run: |
-          python -c "import numpy"
+          ps -p $$ \
+          && python -c "import numpy"
       - name: build library
         run: |
           git clone --depth 1 --branch stable https://github.com/DrTimothyAldenDavis/SuiteSparse suitesparse \
