@@ -57,7 +57,7 @@ jobs:
             bash
             powershell 
           post-cleanup: 'all'
-        name: init conda
+      - name: init conda
         run: |
           conda init bash
       - name: create env
