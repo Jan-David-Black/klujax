@@ -25,7 +25,7 @@ extra_compile_args = {
 extra_link_args = {
     "nt": [],
     "darwin": [], #"-static-libgcc", "-static-libstdc++"
-    "posix": ["-static-libgcc", "-static-libstdc++"],
+    "posix": [], #"-static-libgcc", "-static-libstdc++"
 }
 
 sources = [
