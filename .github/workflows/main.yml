@@ -8,6 +8,10 @@ on:
 
 jobs:
   build-linux:
+    on:
+      push:
+        tags:
+          - "*"
     runs-on: ubuntu-20.04
     timeout-minutes: 14400
     strategy:
@@ -78,6 +82,10 @@ jobs:
           path: dist
 
   build-windows:
+    on:
+      push:
+        tags:
+          - "*"
     runs-on: windows-2019
     timeout-minutes: 14400
     strategy:
