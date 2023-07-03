@@ -69,6 +69,9 @@ jobs:
             wheel
           cache-environment: true
           post-cleanup: 'all'
+      - name: check python works
+        run: |
+          python -c "import numpy"
       - name: build library
         run: |
           git clone --depth 1 --branch stable https://github.com/DrTimothyAldenDavis/SuiteSparse suitesparse \
