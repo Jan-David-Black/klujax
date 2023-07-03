@@ -69,12 +69,14 @@ jobs:
       - name: check python works
         run: |
           ps -p $$ \
+          && conda activate build-env \
           && python -c "import numpy" \
           && conda info
         shell: bash -el {0}
       - name: build library
         run: |
           git clone --depth 1 --branch stable https://github.com/DrTimothyAldenDavis/SuiteSparse suitesparse \
+          && conda activate build-env \
           && python -m pip install jax jaxlib \
           && CC="gcc-12" python setup.py build sdist bdist_wheel \
           && ls dist
