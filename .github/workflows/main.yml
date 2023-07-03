@@ -62,6 +62,7 @@ jobs:
           CONDA_SUBDIR=${{ matrix.ARCH }} conda create -n build-env \
           python=${{ matrix.PYTHON_VERSION }} numpy scipy pybind11 build wheel \
           && conda activate build-env
+        shell: bash -el {0}
       - name: check python works
         run: |
           ps -p $$ \
