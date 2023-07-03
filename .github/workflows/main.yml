@@ -50,19 +50,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Setup mamba environment
-        uses: mamba-org/setup-micromamba@v1.4.3
-        with:
-          micromamba-version: '1.3.1-0'
-          init-shell: >-
-            bash
-            powershell 
-          post-cleanup: 'all'
-      - name: init conda
         run: |
-          conda init bash
+          curl -Ls https://micro.mamba.pm/api/micromamba/${{ matrix.ARCH }}/latest | tar -xvj bin/micromamba \
+          && eval "$(./bin/micromamba shell hook -s posix)"
       - name: create env
         run: |
-          CONDA_SUBDIR=${{ matrix.ARCH }} conda create -n build-env \
+          CONDA_SUBDIR=${{ matrix.ARCH }} micromamba create -n build-env \
           python=${{ matrix.PYTHON_VERSION }} numpy scipy pybind11 build wheel \
           && conda activate build-env
         shell: bash -el {0}
