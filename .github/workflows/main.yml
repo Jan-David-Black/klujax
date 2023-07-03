@@ -70,12 +70,14 @@ jobs:
         run: |
           ps -p $$ \
           && python -c "import numpy"
+        shell: bash -el {0}
       - name: build library
         run: |
           git clone --depth 1 --branch stable https://github.com/DrTimothyAldenDavis/SuiteSparse suitesparse \
           && python -m pip install jax jaxlib \
           && python setup.py build sdist bdist_wheel \
           && ls dist
+        shell: bash -el {0}
       - name: Expose wheel as artifact
         uses: actions/upload-artifact@master
         with:
