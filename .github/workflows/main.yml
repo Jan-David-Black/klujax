@@ -49,18 +49,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Setup mamba environment
-          uses: mamba-org/setup-micromamba@v1.4.3
-            with:
-              micromamba-version: '1.3.1-0'
-              environment-file: environment.yml
-              init-shell: >-
-                bash
-                powershell
-              cache-environment: true
-              post-cleanup: 'all'
-          run: |
-            mamba install python=${{ matrix.PYTHON_VERSION }} numpy scipy pybind11 build wheel \
-            && python -m pip install jax jaxlib
+        uses: mamba-org/setup-micromamba@v1.4.3
+          with:
+            micromamba-version: '1.3.1-0'
+            environment-file: environment.yml
+            init-shell: >-
+              bash
+              powershell
+            cache-environment: true
+            post-cleanup: 'all'
+        run: |
+          mamba install python=${{ matrix.PYTHON_VERSION }} numpy scipy pybind11 build wheel \
+          && python -m pip install jax jaxlib
       - name: build library
         run: |
           git clone --depth 1 --branch stable https://github.com/DrTimothyAldenDavis/SuiteSparse suitesparse \
