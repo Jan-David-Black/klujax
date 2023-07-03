@@ -75,7 +75,7 @@ jobs:
         run: |
           git clone --depth 1 --branch stable https://github.com/DrTimothyAldenDavis/SuiteSparse suitesparse \
           && python -m pip install jax jaxlib \
-          && CC="gcc-12" CPPFLAGS="-std=c++11" python setup.py build sdist bdist_wheel \
+          && python setup.py build sdist bdist_wheel \
           && ls dist
         shell: bash -el {0}
       - name: Expose wheel as artifact
