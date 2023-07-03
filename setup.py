@@ -19,7 +19,7 @@ pybind11_include = {
 }
 extra_compile_args = {
     "nt": [],
-    "darwin": ["-std=c++14", "-hello"],
+    "darwin": ["-std=c++11"],
     "posix": [],
 }
 extra_link_args = {
