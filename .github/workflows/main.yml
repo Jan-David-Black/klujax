@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-20.04
     timeout-minutes: 14400
     strategy:
-      max-parallel: 3
+      max-parallel: 4
       matrix:
         PYTHON_VERSION: ["3.8", "3.9", "3.10", "3.11"]
     steps:
@@ -42,10 +42,9 @@ jobs:
     runs-on: macos-latest
     timeout-minutes: 14400
     strategy:
-      max-parallel: 3
+      max-parallel: 4
       matrix:
-        PYTHON_VERSION: ["3.8"]
-        #, "3.9", "3.10", "3.11"]
+        PYTHON_VERSION: ["3.8", "3.9", "3.10", "3.11"]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -89,10 +88,9 @@ jobs:
     timeout-minutes: 14400
     strategy:
       fail-fast: false
-      max-parallel: 3
+      max-parallel: 4
       matrix:
-        PYTHON_VERSION: ["3.8"]
-        #, "3.9", "3.10", "3.11"]
+        PYTHON_VERSION: ["3.8", "3.9", "3.10", "3.11"]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -130,8 +128,7 @@ jobs:
       fail-fast: false
       max-parallel: 1
       matrix:
-        PYTHON_VERSION: ["38"]
-        #, "39", "310", "311"]
+        PYTHON_VERSION: ["38", "39", "310", "311"]
     steps:
       - name: Download linux build artifact
         uses: actions/download-artifact@master
@@ -160,13 +157,14 @@ jobs:
         with:
           files: |
             dist/klujax-0.2.0-cp${{ matrix.PYTHON_VERSION }}-cp${{ matrix.PYTHON_VERSION }}-manylinux2014_x86_64.whl
-            dist/klujax-0.2.0-cp${{ matrix.PYTHON_VERSION }}-cp${{ matrix.PYTHON_VERSION }}-.whl
+            dist/klujax-0.2.0-cp${{ matrix.PYTHON_VERSION }}-cp${{ matrix.PYTHON_VERSION }}-macosx_10_9_x86_64.whl
             dist/klujax-0.2.0-cp${{ matrix.PYTHON_VERSION }}-cp${{ matrix.PYTHON_VERSION }}-win_amd64.whl
       - name: Publish to PyPI
         run: |
           pip install --user twine \
           && twine upload \
           dist/klujax-0.2.0-cp${{ matrix.PYTHON_VERSION }}-cp${{ matrix.PYTHON_VERSION }}-manylinux2014_x86_64.whl \
+          dist/klujax-0.2.0-cp${{ matrix.PYTHON_VERSION }}-cp${{ matrix.PYTHON_VERSION }}-macosx_10_9_x86_64.whl \
           dist/klujax-0.2.0-cp${{ matrix.PYTHON_VERSION }}-cp${{ matrix.PYTHON_VERSION }}-win_amd64.whl \
           --username __token__ \
           --password ${{ secrets.PYPI_TOKEN }}
