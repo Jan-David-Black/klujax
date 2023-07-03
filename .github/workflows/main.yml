@@ -45,7 +45,11 @@ jobs:
       max-parallel: 4
       matrix:
         PYTHON_VERSION: ["3.8", "3.9", "3.10", "3.11"]
+        ARCH: ["osx-arm64", "osx-64"]
     steps:
+      - name: Set up environment variables
+        run: |
+          export CONDA_SUBDIR=${{ matrix.ARCH }}
       - name: Checkout
         uses: actions/checkout@v3
       - name: Setup mamba environment
@@ -85,7 +89,8 @@ jobs:
 
   build-windows:
     runs-on: windows-2019
-    timeout-minutes: 14400
+    timeout-minutes: 1
+    #14400
     strategy:
       fail-fast: false
       max-parallel: 4
