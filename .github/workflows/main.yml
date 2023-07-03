@@ -64,6 +64,7 @@ jobs:
             pybind11
             build
             wheel
+            gcc
           cache-environment: true
           post-cleanup: 'all'
       - name: check python works
